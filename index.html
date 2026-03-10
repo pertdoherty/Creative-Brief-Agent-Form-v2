@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Brief Agent</title>
+    <!-- Tailwind CSS for sleek, modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6 font-sans">
+
+    <div class="glass-panel w-full max-w-3xl p-8 rounded-2xl shadow-2xl">
+        <div class="mb-8 text-center">
+            <h1 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                AI Creative Agent
+            </h1>
+            <p class="text-slate-400 mt-2">Submit your raw brief and let the agent build your strategic deck.</p>
+        </div>
+
+        <form id="creativeBriefForm" class="space-y-6">
+            
+            <!-- 1. Client & Contact Info -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Your Email *</label>
+                    <input type="email" name="email" required 
+                        class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" 
+                        placeholder="hello@agency.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Client / Brand Name *</label>
+                    <input type="text" name="clientName" required 
+                        class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" 
+                        placeholder="Acme Corp">
+                </div>
+            </div>
+
+            <!-- NEW: Website URL for Web Crawler -->
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-1">Client Website URL (For AI Scraper) *</label>
+                <input type="url" name="websiteUrl" required 
+                    class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500" 
+                    placeholder="https://www.example.com">
+                <p class="text-xs text-slate-500 mt-1">The AI will crawl this site to generate accurate Facebook, Google, and LinkedIn ad copy.</p>
+            </div>
+
+            <!-- 2. Project Details -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Project Name *</label>
+                    <input type="text" name="projectName" required 
+                        class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" 
+                        placeholder="Q3 Product Launch">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Project Type</label>
+                    <select name="projectType" 
+                        class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                        <option value="Video Production">Video Production</option>
+                        <option value="Graphic Design">Graphic Design</option>
+                        <option value="Full Campaign">Full Campaign</option>
+                        <option value="Web Design">Web Design</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 3. The Briefing -->
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-1">Raw Brief / Objective *</label>
+                <textarea name="objective" rows="3" required 
+                    class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" 
+                    placeholder="What is the main goal of this project?"></textarea>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-1">Target Audience</label>
+                <textarea name="targetAudience" rows="2" 
+                    class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" 
+                    placeholder="Who are we talking to?"></textarea>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-1">Deliverables Required</label>
+                <textarea name="deliverables" rows="2" 
+                    class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" 
+                    placeholder="e.g., 1x 30s Video, 3x IG Stories"></textarea>
+            </div>
+
+            <!-- 4. Logistics & References -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Timeline / Deadline</label>
+                    <input type="text" name="timeline" 
+                        class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" 
+                        placeholder="e.g., End of Month">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Budget</label>
+                    <input type="text" name="budget" 
+                        class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" 
+                        placeholder="e.g., $10,000">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-1">Reference Links</label>
+                <input type="text" name="referenceLinks" 
+                    class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" 
+                    placeholder="YouTube, Pinterest, or Drive links">
+            </div>
+
+            <!-- 5. File Upload (For OCR / Image Vision) -->
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-1">Upload Reference File (Optional)</label>
+                <input type="file" name="fileUpload" accept="image/*,application/pdf"
+                    class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-2 text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700">
+                <p class="text-xs text-slate-500 mt-1">Accepts Images or PDFs. The AI will read the contents automatically.</p>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="submitBtn" 
+                class="w-full mt-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-3 px-4 rounded-lg shadow-lg transform transition hover:scale-[1.02]">
+                Generate Creative Deck
+            </button>
+            
+            <div id="statusMessage" class="hidden text-center text-sm font-medium mt-4 p-3 rounded-lg"></div>
+        </form>
+    </div>
+
+    <script>
+        // Update this to your active n8n Webhook Test or Production URL
+        // Example: https://YOUR_N8N_URL/webhook/f2a8c714-29be-41a2-b678-51597f18732d
+        const N8N_WEBHOOK_URL = 'https://n8n.YOUR-DOMAIN.com/webhook/f2a8c714-29be-41a2-b678-51597f18732d';
+
+        const form = document.getElementById('creativeBriefForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const statusMessage = document.getElementById('statusMessage');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // UI Update: Loading State
+            submitBtn.innerText = 'Analyzing Brief & Crawling Website...';
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            statusMessage.classList.add('hidden');
+
+            // Use FormData to correctly package text fields AND the file upload
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch(https://astroproduct.app.n8n.cloud/webhook-test/f2a8c714-29be-41a2-b678-51597f18732d, {
+                    method: 'POST',
+                    body: formData // Automatically sets 'multipart/form-data'
+                });
+
+                if (response.ok) {
+                    statusMessage.innerText = 'Success! Your brief is processing. The final PDF will be emailed to you shortly.';
+                    statusMessage.className = 'text-center text-sm font-medium mt-4 p-3 rounded-lg bg-green-900/50 text-green-400 border border-green-800 block';
+                    form.reset();
+                } else {
+                    throw new Error('Server returned an error.');
+                }
+            } catch (error) {
+                console.error(error);
+                statusMessage.innerText = 'Failed to submit. Please ensure your n8n webhook URL is correct and active.';
+                statusMessage.className = 'text-center text-sm font-medium mt-4 p-3 rounded-lg bg-red-900/50 text-red-400 border border-red-800 block';
+            } finally {
+                // UI Update: Reset State
+                submitBtn.innerText = 'Generate Creative Deck';
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+            }
+        });
+    </script>
+</body>
+</html>
